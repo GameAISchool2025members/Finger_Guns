@@ -7,6 +7,12 @@ MAX_SPEED = 0.003 * utils.SCREEN_H
 SHIFT_DURATION = 30
 SHIFT_SUPPRESSION = 90
 FLIP_INTERVAL = 15
+HEAD_TILT_PROB = 0.05
+TORSO_TILT_PROB = 0.05
+
+def random_controller(i1, i2, i3, i4):
+    return [random.gauss(0, 0.3), random.gauss(0, 0.3),
+            (random.random() < HEAD_TILT_PROB) - (random.random() < HEAD_TILT_PROB), (random.random() < TORSO_TILT_PROB) - (random.random() < TORSO_TILT_PROB)]
 class Enemy:
     def __init__(self, controller, sprite_h, sprite_t, sprite_l, x):
         self.controller = controller
@@ -25,9 +31,8 @@ class Enemy:
         self.flip_timer = FLIP_INTERVAL
 
     def move(self, p_x, p_y):
-        outputs = [random.gauss(0, 0.3), random.gauss(0, 0.3), random.random() * 2 - 1, random.random() * 2 - 1]
-        #outputs = self.controller(p_x, p_y, self.pos[0], self.pos[1])
-        self.pos[0] += int(MAX_SPEED * outputs[0] * 2)
+        outputs = self.controller(p_x, p_y, self.pos[0], self.pos[1])
+        self.pos[0] += int(MAX_SPEED * outputs[0] * 10)
         self.pos[1] += int(MAX_SPEED * (2 * outputs[1] + 1))
         self.size = (MAX_SIZE - DEFAULT_SIZE) * self.pos[1] / utils.SCREEN_H + DEFAULT_SIZE
         if self.flip_timer == 0:
@@ -63,6 +68,3 @@ class Enemy:
 
     def kill(self):
         return
-
-#class EnemyPoll:
-    #def __init__(self, pops, ):

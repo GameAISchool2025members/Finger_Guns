@@ -7,6 +7,11 @@ class NN:
         self.weights = copy.deepcopy(weights)
         self.act_func = activation_function
 
+
+    #def __init__(self, structure, activation_function = math.tanh):
+    #    self.weights = []
+
+
     def compute(self, values):
         prev_vals = values
         for layer in self.weights:
