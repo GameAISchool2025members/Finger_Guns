@@ -93,6 +93,7 @@ while running and curr_hp > 0 and (tot_enemies < MAX_ENEMIES or len(enemies) > 0
             if event.key.keysym.sym == sdl2.SDLK_w:
                 enemies = []
                 tot_enemies = MAX_ENEMIES
+                enemies_killed = MAX_ENEMIES
                 break
             if event.key.keysym.sym == sdl2.SDLK_l:
                 curr_hp = 0
@@ -356,11 +357,11 @@ if running:
                 sdl2.SDL_RenderCopy(renderer.sdlrenderer, texture, None, text_rect)
                 sdl2.SDL_DestroyTexture(texture)
                 sdl2.SDL_FreeSurface(text_surface)
-        while index < len(high_scores) and index < 8 and (high_scores[index][0] > enemies_killed or (high_scores[index][0] == enemies_killed and high_scores[index][1] > curr_hp)):
+        while index < len(high_scores) and index < 8:
             score = high_scores[index]
             text_surface = sdl2.sdlttf.TTF_RenderText_Solid(font, f"{score[2]}: ".encode("utf-8"), white_sdl)
             texture = sdl2.SDL_CreateTextureFromSurface(renderer.sdlrenderer, text_surface)
-            text_rect = sdl2.SDL_Rect(300, 400 + 100 * index, min(text_surface.contents.w, 500), 50)
+            text_rect = sdl2.SDL_Rect(600, 400 + 100 * index, min(text_surface.contents.w, 200), 50)
             sdl2.SDL_RenderCopy(renderer.sdlrenderer, texture, None, text_rect)
             sdl2.SDL_DestroyTexture(texture)
             sdl2.SDL_FreeSurface(text_surface)
@@ -384,15 +385,17 @@ if running:
         prev_tick = time.time_ns() / 1e6
         renderer.present()
 
+sdl2.sdlttf.TTF_CloseFont(font)
 sdl2.sdlttf.TTF_Quit()
 sdl2.sdlmixer.Mix_FreeChunk(shoot_sound)
 sdl2.sdlmixer.Mix_FreeChunk(victory_sound)
 sdl2.sdlmixer.Mix_FreeChunk(defeat_sound)
 sdl2.sdlmixer.Mix_CloseAudio()
 sdl2.ext.quit()
-if False and get_score:
+if get_score:
     print("Your name? ")
     name = input()
     if name != "":
         file = open("high_scores.txt", 'a')
         file.write(f"{name};{enemies_killed};{curr_hp}\n")
+        file.close()
