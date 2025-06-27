@@ -329,7 +329,7 @@ if running:
             sdl2.SDL_RenderCopy(renderer.sdlrenderer, texture, None, text_rect)
             sdl2.SDL_DestroyTexture(texture)
             sdl2.SDL_FreeSurface(text_surface)
-            if score[0] == MAX_ENEMIES:
+            if score[1] > 0:
                 text_surface = sdl2.sdlttf.TTF_RenderText_Solid(font, f"{score[1]} hp".encode("utf-8"), white_sdl)
                 texture = sdl2.SDL_CreateTextureFromSurface(renderer.sdlrenderer, text_surface)
                 text_rect = sdl2.SDL_Rect(1200, 300 + 100 * index, text_surface.contents.w, 50)
@@ -350,7 +350,7 @@ if running:
             sdl2.SDL_RenderCopy(renderer.sdlrenderer, texture, None, text_rect)
             sdl2.SDL_DestroyTexture(texture)
             sdl2.SDL_FreeSurface(text_surface)
-            if enemies_killed == MAX_ENEMIES:
+            if curr_hp > 0:
                 text_surface = sdl2.sdlttf.TTF_RenderText_Solid(font, f"{curr_hp} hp".encode("utf-8"), white_sdl)
                 texture = sdl2.SDL_CreateTextureFromSurface(renderer.sdlrenderer, text_surface)
                 text_rect = sdl2.SDL_Rect(1200, 300 + 100 * index, text_surface.contents.w, 50)
@@ -371,7 +371,7 @@ if running:
             sdl2.SDL_RenderCopy(renderer.sdlrenderer, texture, None, text_rect)
             sdl2.SDL_DestroyTexture(texture)
             sdl2.SDL_FreeSurface(text_surface)
-            if score[0] == MAX_ENEMIES:
+            if score[1] > 0:
                 text_surface = sdl2.sdlttf.TTF_RenderText_Solid(font, f"{score[1]} hp".encode("utf-8"), white_sdl)
                 texture = sdl2.SDL_CreateTextureFromSurface(renderer.sdlrenderer, text_surface)
                 text_rect = sdl2.SDL_Rect(1200, 400 + 100 * index, text_surface.contents.w, 50)

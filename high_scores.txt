@@ -3,3 +3,25 @@ henry;23;0
 Filip;9;0
 mingmin;11;0
 mingmin;4;0
+piero;3;0
+arvid J;5;0
+girolamo;8;0
+Staffan;11;0
+bati;5;0
+Daniel;26;1
+Nan;11;0
+Antonios;9;0
+Alejandro;23;0
+Julius&Gerogios;28;3
+esteban;24;0
+caleb;11;0
+umit;12;0
+batikan;26;1
+Muhammad;10;0
+Torbj;22;0
+matteo;25;0
+andrea;25;0
+quby;18;0
+Dien;28;3
+Francesco;30;5
+StevieTheTurtle;27;1
