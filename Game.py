@@ -1,6 +1,5 @@
 import random
 import time
-import ctypes
 
 import cv2
 import mediapipe as mp
